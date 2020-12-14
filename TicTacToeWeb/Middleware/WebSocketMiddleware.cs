@@ -94,6 +94,11 @@ namespace TicTacToeWeb.Middleware
             {
                 Player user = await userManager.GetUserAsync(auth.Principal);
                 id = manager.AddSocket(socket, user.Name);
+                if(id == null)
+                {
+                    await CloseConnection(user.Name, manager.GetSocketById(user.Name));
+                    id = manager.AddSocket(socket, user.Name);
+                }
             }
             else
                 id = manager.AddSocket(socket, "Player "+manager.ID++);
@@ -286,7 +291,7 @@ namespace TicTacToeWeb.Middleware
             }
         }
 
-        private async Task DisconnectFromGame(string id, GameDataModel game)
+        public async Task DisconnectFromGame(string id, GameDataModel game)
         {
             var dbContext = getNewDBContext();
             var result = game.RemovePlayer(id);

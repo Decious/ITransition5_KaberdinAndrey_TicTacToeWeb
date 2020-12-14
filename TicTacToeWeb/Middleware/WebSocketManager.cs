@@ -14,10 +14,10 @@ namespace TicTacToeWeb.Middleware
 
         public String AddSocket(WebSocket socket,String name = null)
         {
-            var existingSocket = sockets.FirstOrDefault(x => x.Value == socket);
-            if (existingSocket.Value!=null)
+            var existingSocket = sockets.FirstOrDefault(x => x.Key == name);
+            if (existingSocket.Key!=null)
             {
-                return name;
+                return null;
             }
             sockets.Add(name, socket);
             return name;

@@ -1,0 +1,29 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using Data.Models
+@inject SignInManager<Player> SignInManager
+@inject UserManager<Player> UserManager
+
+<ul class="navbar-nav">
+    @if (SignInManager.IsSignedIn(User))
+    {
+        var user = await UserManager.GetUserAsync(User); 
+        <li>
+        <a class="nav-link text-dark" href="#" id="userNameNav">@user.Name</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-danger" asp-page="Logout">Log out</a>
+        </li>
+    }
+    else
+    {
+        <li class="nav-item">
+            <a class="nav-link text-dark" href="#" id="userNameNav">Hello Stranger!</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-primary" asp-page="Register">Register</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-primary" asp-page="Login">Login</a>
+        </li>
+    }
+</ul>

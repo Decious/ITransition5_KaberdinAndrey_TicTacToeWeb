@@ -21,7 +21,6 @@ socket.onclose = function (event) {
 }
 socket.onmessage = function (event) {
     var object = JSON.parse(event.data);
-    console.log(object);
     var user = document.getElementById("userNameNav");
     switch (object.Type) {
         case "Credentials":
@@ -45,7 +44,6 @@ function sendMessage() {
     var text = document.getElementById("messageInput");
     var obj = { Type: "Message", Action: "Send", Value: text.value };
     var json = JSON.stringify(obj);
-    console.log(json);
     socket.send(json);
     text.value = '';
 }

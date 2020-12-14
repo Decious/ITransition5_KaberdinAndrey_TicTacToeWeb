@@ -87,7 +87,6 @@ function sendMessage() {
     var text = document.getElementById("messageInput");
     var obj = { Type: "Message", Action: "SendGame", Value: text.value };
     var json = JSON.stringify(obj);
-    console.log(json);
     socket.send(json);
     text.value = '';
 }

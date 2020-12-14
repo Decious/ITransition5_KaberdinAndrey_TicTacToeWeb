@@ -93,7 +93,7 @@ namespace TicTacToeWeb.Data.Models
             {
                 return GameResult.END;
             }
-            else if (gameField[2] == gameField[5] && gameField[4] == gameField[8] && gameField[2] != "")
+            else if (gameField[2] == gameField[5] && gameField[5] == gameField[8] && gameField[2] != "")
             {
                 return GameResult.END;
             }
